@@ -2,4 +2,4 @@
 
 pwd
 
-docker buildx build --platform linux/arm64 -t $IMAGE_NAME .
+docker buildx build --platform linux/arm64/v8 -t $IMAGE_NAME .
