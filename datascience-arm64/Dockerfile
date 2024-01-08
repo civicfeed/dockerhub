@@ -10,6 +10,8 @@ ENV PYTHONFAULTHANDLER 1
 
 WORKDIR /app
 
+COPY qemu-aarch64-static /usr/bin/
+
 # install all packages
 RUN apt-get clean && apt-get update && \
     apt-get install -y curl git librdkafka-dev libsnappy-dev protobuf-compiler gcc g++
