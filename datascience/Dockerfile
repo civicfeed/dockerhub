@@ -1,4 +1,3 @@
-ARG TARGETARCH
 # -----------------------------------------------------------------------------
 FROM python:3.10-slim-bookworm AS builder
 ARG TARGETARCH
@@ -27,7 +26,11 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
 
-COPY Pipfile ./
-COPY Pipfile.lock.${TARGETARCH} ./Pipfile.lock
+COPY Pipfile* ./
+RUN if [ "$TARGETARCH" = "arm64" ]; then \ 
+        cp Pipfile.lock.arm64 ./Pipfile.lock; \
+    else \
+        cp Pipfile.lock.amd64 ./Pipfile.lock; \
+    fi
 
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install -v --deploy
