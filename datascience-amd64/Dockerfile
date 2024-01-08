@@ -28,6 +28,6 @@ RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
 
 COPY Pipfile ./
-COPY Pipfile.lock.$TARGETARCH ./Pipfile.lock
+COPY Pipfile.lock ./Pipfile.lock
 
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install -v --deploy

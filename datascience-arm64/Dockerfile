@@ -1,6 +1,6 @@
 
 # -----------------------------------------------------------------------------
-FROM python:3.10-slim-bookworm AS builder
+FROM --platform=linux/arm64 python:3.10-slim-bookworm AS builder
 
 # Setup env
 ENV LANG C.UTF-8
