@@ -17,7 +17,7 @@ RUN apt-get clean && apt-get update && \
 # create python user and group
 RUN adduser python
 
-# security best practices, use the root group
+# security best practices, use the root grokeup
 RUN chown python:root ./
 
 ENV PATH="/root/.local/bin:$PATH"
@@ -26,5 +26,8 @@ ENV PATH="/root/.local/bin:$PATH"
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
+
+COPY Pipfile ./
+COPY Pipfile.lock.$TARGETARCH ./Pipfile.lock
 
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install -v --deploy
