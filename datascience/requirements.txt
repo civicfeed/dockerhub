@@ -1,0 +1,9 @@
+--index-url https://pypi.org/simple
+--extra-index-url https://pypi.nvidia.com
+
+numpy ==1.26.4
+pandas==2.2.0
+pyarrow==14.0.2
+cudf-cu12==24.4.0
+cuml-cu12==24.4.0
+cugraph-cu12==24.4.0

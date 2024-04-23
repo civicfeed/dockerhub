@@ -34,3 +34,4 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
     fi
 
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install -v --deploy
+RUN pipenv run pip install -r requirements.txt
