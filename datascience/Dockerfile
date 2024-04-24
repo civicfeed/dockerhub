@@ -23,6 +23,7 @@ ENV PATH="/root/.local/bin:$PATH"
 
 # mark github.com as known host
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN pipenv run pip install -r requirements.txt
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
 
