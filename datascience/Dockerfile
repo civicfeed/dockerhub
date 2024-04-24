@@ -26,7 +26,7 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
 COPY requirements.txt ./
-RUN pipenv run pip install -r requirements.txt
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv run pip install -r requirements.txt
 
 COPY Pipfile* ./
 RUN if [ "$TARGETARCH" = "arm64" ]; then \ 
