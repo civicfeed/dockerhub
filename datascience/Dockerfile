@@ -25,6 +25,7 @@ ENV PATH="/root/.local/bin:$PATH"
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
+COPY requirements.txt ./
 RUN pipenv run pip install -r requirements.txt
 
 COPY Pipfile* ./
