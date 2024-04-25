@@ -20,7 +20,7 @@ RUN adduser python
 RUN chown python:root ./
 
 ENV PATH="/root/.local/bin:$PATH"
-ENV PIP_DEFAULT_TIMEOUT=2200
+ENV PIP_DEFAULT_TIMEOUT=600
 ENV PIPENV_VENV_IN_PROJECT=1
 
 # mark github.com as known host
