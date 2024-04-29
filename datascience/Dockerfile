@@ -22,13 +22,16 @@ RUN chown python:root ./
 ENV PATH="/root/.local/bin:$PATH"
 ENV PIP_DEFAULT_TIMEOUT=2200
 ENV PIPENV_VENV_IN_PROJECT=1
+ENV SENTENCE_TRANSFORMERS_HOME=/app/.sentence_transformers
+
+RUN mkdir -p $SENTENCE_TRANSFORMERS_HOME && chown python:root $SENTENCE_TRANSFORMERS_HOME
 
 # mark github.com as known host
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
 COPY requirements.txt ./
-RUN pipenv run pip install -r requirements.txt
+RUN pipenv run pip install --no-cache-dir -r requirements.txt
 
 COPY Pipfile* ./
 RUN if [ "$TARGETARCH" = "arm64" ]; then \ 
@@ -37,4 +40,4 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
         cp Pipfile.lock.amd64 ./Pipfile.lock; \
     fi
 
-RUN pipenv install -v --deploy
+RUN pipenv install -v --deploy --clear
