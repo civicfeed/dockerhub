@@ -11,6 +11,7 @@ ENV PYTHONFAULTHANDLER 1
 WORKDIR /app
 
 # install all packages
+USER root
 RUN apt-get clean && apt-get update && \
     apt-get install -y curl git librdkafka-dev libsnappy-dev protobuf-compiler gcc g++
 
