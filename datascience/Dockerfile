@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # python:3.10-slim-bookworm AS builder
-FROM rapidsai/base:24.04-cuda12.0-py3.10 as builder 
+FROM rapidsai/base:24.06-cuda12.2-py3.10 as builder 
 ARG TARGETARCH
 # Setup env
 ENV LANG C.UTF-8
