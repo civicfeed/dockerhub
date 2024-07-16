@@ -13,7 +13,8 @@ WORKDIR /app
 # install all packages
 USER root
 RUN apt-get clean && apt-get update && \
-    apt-get install -y curl git librdkafka-dev libsnappy-dev protobuf-compiler gcc g++
+    apt-get install -y curl git librdkafka-dev libsnappy-dev protobuf-compiler gcc g++ && \
+    apt-get install libcublas-12-0
 
 # create python user and group
 RUN adduser python
