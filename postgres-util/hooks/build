@@ -1,0 +1,6 @@
+#!/bin/bash -x
+
+pwd
+
+docker buildx create --use --platform=linux/arm64,linux/amd64 --driver=docker-container
+docker buildx build --push --platform linux/arm64,linux/amd64 -t $IMAGE_NAME .
