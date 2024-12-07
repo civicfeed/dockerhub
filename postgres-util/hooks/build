@@ -3,4 +3,4 @@
 pwd
 echo "DOCKER TAG: $DOCKER_TAG"
 docker buildx create --use --platform=linux/arm64,linux/amd64 --driver=docker-container
-docker buildx build --push --platform linux/arm64,linux/amd64 -t $IMAGE_NAME --build-arg POSTGRES_VERSION=$POSTGRES_VERSION .
+docker buildx build --push --platform linux/arm64,linux/amd64 -t $IMAGE_NAME --build-arg POSTGRES_VERSION=$DOCKER_TAG .
