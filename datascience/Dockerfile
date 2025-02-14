@@ -29,11 +29,15 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN pip install --upgrade pip setuptools wheel && \
     pip install pipenv
 
-COPY Pipfile* ./
-RUN if [ "$TARGETARCH" = "arm64" ]; then \ 
-        cp Pipfile.lock.arm64 ./Pipfile.lock; \
-    else \
-        cp Pipfile.lock.amd64 ./Pipfile.lock; \
-    fi
+# Install uv from official image
+COPY --from=ghcr.io/astral-sh/uv:0.4.17 /uv /bin/uv
+ENV UV_PYTHON_INSTALL_DIR=/opt/uv/python
 
-RUN pipenv install --system -v --deploy --clear
+#COPY Pipfile* ./
+#RUN if [ "$TARGETARCH" = "arm64" ]; then \ 
+#        cp Pipfile.lock.arm64 ./Pipfile.lock; \
+#    else \
+#        cp Pipfile.lock.amd64 ./Pipfile.lock; \
+#    fi
+
+#RUN pipenv install --system -v --deploy --clear
